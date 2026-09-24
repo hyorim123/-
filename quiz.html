@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>인문학과 윤리 · 구용구사 레벨업</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e2a2b;--bg2:#1a4644;--ink:#eef5f1;--mut:#9dbdb5;--jade:#7fd1b9;--gold:#f2c14e;--red:#e8675f;--card:#0a1c1d;--line:#2c5a57;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#0e2a2b}
+*,*:before,*:after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+body{position:relative;background:radial-gradient(120% 90% at 50% 0,var(--bg2),var(--bg));color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.serif{font-family:"Noto Serif KR",serif}
+.scr{position:absolute;inset:0;display:none;flex-direction:column;padding:clamp(14px,3vh,32px) clamp(16px,4vw,56px);overflow:auto}
+.scr.on{display:flex}
+.fs{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:14px;z-index:5;background:#0a1c1dcc;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px}
+/* start */
+#start{justify-content:center;align-items:center;text-align:center;gap:clamp(16px,4vh,44px)}
+#start h1{font-size:clamp(34px,7vw,88px);line-height:1.15;margin:0;letter-spacing:-2px}
+#start .sub{color:var(--mut);font-size:clamp(15px,2vw,22px);margin-top:12px}
+.lv{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,24px);width:min(1100px,100%)}
+.lvb{text-align:left;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:clamp(16px,3vh,32px);transition:transform .15s,border-color .15s}
+.lvb:hover{transform:translateY(-4px);border-color:var(--jade)}
+.lvb b{display:block;font-size:clamp(22px,3vw,36px);margin:6px 0}
+.lvb small{color:var(--mut);font-size:clamp(13px,1.5vw,17px);line-height:1.5;display:block}
+.tag{display:inline-block;background:var(--gold);color:#241a00;border-radius:8px;padding:3px 10px;font-weight:900;font-size:13px}
+/* game */
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-right:96px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 12px;font-weight:700;font-size:clamp(13px,1.6vw,18px)}
+.tm{margin-left:auto;font-size:clamp(28px,4vw,48px);font-weight:900;color:var(--gold);min-width:90px;text-align:right}
+.tm.d{color:var(--red);animation:pl .6s infinite alternate}
+@keyframes pl{to{transform:scale(1.1)}}
+.pg{height:10px;background:var(--card);border-radius:9px;overflow:hidden;margin:12px 0}
+.pg i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--jade),var(--gold));transition:width .4s}
+.qc{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,4vh,48px) clamp(18px,4vw,56px);overflow:hidden}
+.wm{position:absolute;right:2%;top:50%;transform:translateY(-50%);font-size:clamp(120px,26vw,380px);line-height:1;opacity:.07;font-family:"Noto Serif KR",serif;font-weight:900;pointer-events:none;white-space:nowrap}
+.q{position:relative;font-size:clamp(24px,4.2vw,54px);font-weight:900;line-height:1.35;letter-spacing:-1px;margin:14px 0 0;max-width:22em}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.6vw,16px);margin-top:clamp(12px,2.5vh,24px)}
+.a{display:flex;gap:12px;align-items:center;text-align:left;background:#12302f;border:2px solid var(--line);border-radius:16px;padding:clamp(12px,2.2vh,22px) 16px;font-weight:700;font-size:clamp(16px,2vw,26px);line-height:1.4;min-height:64px;transition:background .15s,border-color .15s}
+.a em{flex:none;width:34px;height:34px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-style:normal;font-size:16px}
+.a:hover:not(:disabled){border-color:var(--jade);background:#173d3b}
+.a:disabled{cursor:default}
+.a.ok{background:#14503f;border-color:var(--jade)}.a.ok em{background:var(--jade);color:#06231b}
+.a.no{background:#552726;border-color:var(--red)}.a.no em{background:var(--red);color:#2b0a09}
+.a.gone{visibility:hidden}
+.bar{display:flex;gap:12px;align-items:center;margin-top:12px;min-height:76px}
+.fb{flex:1;font-size:clamp(14px,1.8vw,20px);line-height:1.5;color:var(--ink)}
+.fb b.g{color:var(--jade)}.fb b.r{color:var(--red)}
+.btn{border:0;border-radius:14px;padding:14px 22px;font-weight:900;font-size:clamp(16px,2vw,22px);background:var(--jade);color:#06231b}
+.btn.s{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.35;cursor:default}
+/* result */
+#result{justify-content:center;align-items:center;text-align:center}
+#result h2{font-size:clamp(30px,5vw,60px);margin:8px 0}
+.big{font-size:clamp(56px,11vw,140px);font-weight:900;color:var(--gold);line-height:1}
+.rg{display:flex;gap:12px;margin:18px 0;flex-wrap:wrap;justify-content:center}
+.rg div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 22px;min-width:120px}
+.rv{width:min(760px,100%);text-align:left;margin-top:16px}
+.rv div{padding:10px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.5}
+@media(max-width:760px){.lv{grid-template-columns:1fr}.ans{grid-template-columns:1fr}.tm{margin-left:0}.top{padding-right:0;margin-top:40px}.bar{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<button class="fs" id="fs" type="button">⛶ 전체화면</button>
+
+<section class="scr on" id="start">
+  <div>
+    <span class="tag">인문학과 윤리 · Ⅰ. 성찰 대상으로서의 나</span>
+    <h1 class="serif" style="margin-top:14px">구용 · 구사<br>레벨업 퀴즈</h1>
+    <div class="sub">몸가짐과 마음가짐을 바르게 하는 공부 — 레벨을 올려 성인(聖人)에 도전하세요.</div>
+  </div>
+  <div class="lv">
+    <button class="lvb" data-l="1"><span class="tag">LEVEL 1</span><b class="serif">기본 · 학동</b><small>구용·구사 핵심 용어와 단원 개념<br>10문제 · 시간 제한 없음</small></button>
+    <button class="lvb" data-l="2"><span class="tag">LEVEL 2</span><b class="serif">심화 · 선비</b><small>개념 구분과 관계 파악<br>15문제 · 문제당 20초</small></button>
+    <button class="lvb" data-l="3"><span class="tag">LEVEL 3</span><b class="serif">응용 · 군자</b><small>상황 적용과 고전 연결<br>20문제 · 문제당 15초</small></button>
+  </div>
+  <small style="color:var(--mut)">키보드: 1~4 선택 · Enter/Space 다음 · F 전체화면</small>
+</section>
+
+<section class="scr" id="game">
+  <div class="top"><span class="chip" id="lvn"></span><span class="chip" id="cnt"></span><span class="chip" id="sc"></span><span class="chip" id="st"></span><span class="tm" id="tm">∞</span></div>
+  <div class="pg"><i id="pb"></i></div>
+  <div class="qc"><div class="wm" id="wm"></div><div><span class="tag" id="cat"></span></div><h2 class="q" id="q"></h2><div class="ans" id="ans"></div></div>
+  <div class="bar"><button class="btn s" id="quit" type="button">나가기</button><button class="btn s" id="half" type="button">50:50 (1회)</button><div class="fb" id="fb" aria-live="polite"></div><button class="btn" id="next" type="button" disabled>다음 문제 ▶</button></div>
+</section>
+
+<section class="scr" id="result">
+  <span class="tag" id="rl"></span>
+  <h2 class="serif" id="rt"></h2>
+  <div class="big" id="rs"></div>
+  <div id="rm" style="color:var(--mut);margin-top:8px"></div>
+  <div class="rg"><div><b id="rc"></b><br>정답</div><div><b id="ra"></b><br>정답률</div><div><b id="rb"></b><br>최고 연속</div></div>
+  <div><button class="btn" id="nl" type="button">다음 레벨 ▶</button> <button class="btn s" id="again" type="button">다시 도전</button> <button class="btn s" id="home" type="button">레벨 선택</button></div>
+  <div class="rv" id="rv"></div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s);
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+// [이름, 한자, 뜻]
+const GU=[['족용중','足容重','발의 움직임을 무겁게 한다'],['수용공','手容恭','손의 모습은 공손히 한다'],['목용단','目容端','눈의 모습은 단정하게 한다'],['구용지','口容止','입은 꾹 다문다'],['성용정','聲容靜','목소리는 고요히 한다'],['두용직','頭容直','머리의 모양은 곧게 한다'],['기용숙','氣容肅','숨 쉬는 것은 조용히 한다'],['입용덕','立容德','서 있는 모습은 덕스럽게 한다'],['색용장','色容莊','얼굴빛은 장중하게 한다']];
+const GS=[['시사명','視思明','볼 때는 분명하게 볼 것을 생각한다'],['청사총','聽思聰','들을 때는 분명히 들을 것을 생각한다'],['색사온','色思溫','얼굴빛은 온화할 것을 생각한다'],['모사공','貌思恭','겉모습은 단정하고 공손하게 할 것을 생각한다'],['언사충','言思忠','말은 진실하게 할 것을 생각한다'],['사사경','事思敬','일할 때 공경으로 할 것을 생각한다'],['의사문','疑思問','의심스러움이 있으면 묻기를 생각한다'],['분사난','忿思難','화가 날 때는 어려움을 겪게 될 것을 생각한다'],['견득사의','見得思義','올바른 도리를 찾아 자신을 이겨 내야 한다']];
+const GLY={'구용':'容','구사':'思','몸과 마음':'心','쾌락과 고통':'樂','공부와 삶':'學','구용·구사':'敬'};
+// [레벨, 분류, 문제, [정답,오답,오답,오답], 해설]
+const H=[
+[1,'구용·구사','구용과 구사를 제시한 이이의 책은?',['격몽요결','코스모스','숫타니파타','쾌락'],'『격몽요결』은 이이가 아이들을 가르치려고 만든 책이며, 구용·구사는 유교 청소년 교육용 책에 제시된다.'],
+[1,'구용','구용(九容)은 무엇을 위한 방법인가?',['몸과 마음을 지키는 아홉 가지 방법','배움을 진전시키는 아홉 가지 방법','고통을 없애는 아홉 가지 방법','욕구를 채우는 아홉 가지 방법'],'구용은 몸과 마음을 지키는 아홉 가지, 구사는 배움을 진전시키고 지혜를 더하는 아홉 가지 방법이다.'],
+[1,'쾌락과 고통','에피쿠로스가 본 참된 쾌락은?',['몸에 고통이 없고 마음에 동요가 없는 상태','감각적 욕구를 끝없이 채우는 것','명예와 권력을 얻는 것','남보다 많이 소유하는 것'],'참된 쾌락은 몸과 마음이 고통과 두려움에서 벗어난 상태이다.'],
+[1,'공부와 삶','『격몽요결』의 ‘격몽(擊蒙)’의 뜻은?',['어리석어 따르지 않는 자를 깨우치다','옛 습관을 잘라 내다','뜻을 세우다','몸가짐을 바르게 하다'],'격몽은 어리석어 따르지 않는 자를 깨우친다는 뜻이다.'],
+[1,'몸과 마음','다음 중 몸과 마음의 관계로 알맞은 것은?',['서로 영향을 주고받는다','마음만 몸에 영향을 준다','몸만 마음에 영향을 준다','서로 무관하다'],'긴장하면 심장이 뛰고, 심장이 뛰면 더 긴장하는 것처럼 몸과 마음은 순환적으로 영향을 준다.'],
+[2,'구용·구사','다음 중 구용(九容)에 속하지 않는 것은?',['시사명','족용중','수용공','색용장'],'시사명은 구사(九思)에 속한다.'],
+[2,'구용·구사','다음 중 구사(九思)에 속하지 않는 것은?',['수용공','청사총','언사충','의사문'],'수용공은 구용(九容)에 속한다.'],
+[2,'구용·구사','구사(九思)는 무엇을 위한 방법인가?',['배움을 진전시키고 지혜를 더하는 방법','몸의 자세를 바로잡는 방법','욕구를 완전히 없애는 방법','과거 급제를 위한 방법'],'구사는 배움을 진전시키고 지혜를 더하는 아홉 가지 방법이다.'],
+[2,'쾌락과 고통','명예욕과 권력욕은 에피쿠로스의 욕구 분류에서 무엇인가?',['자연스럽지도 필수적이지도 않은 공허한 욕구','자연스럽고 필수적인 욕구','자연스럽지만 필수적이지 않은 욕구','참된 쾌락의 원천'],'식욕·수면욕은 필수적 욕구, 성욕·미식은 필수적이지 않은 욕구, 명예욕·권력욕은 공허한 욕구이다.'],
+[2,'쾌락과 고통','에피쿠로스가 행복한 삶의 목적으로 본 두 가지는?',['아포니아와 아타락시아','소피아와 프로네시스','생고와 노고','입지와 혁구습'],'몸의 건강[아포니아]과 마음의 평안[아타락시아]이다.'],
+[2,'쾌락과 고통','석가모니가 말한 두 번째 화살은?',['고통 자체에 집착해 괴로움을 키우는 의식적 습관','사건으로 자연스럽게 생기는 고통','죽음에 대한 두려움','결핍으로 인한 고통'],'첫 번째 화살은 사건으로 생기는 고통, 두 번째 화살은 그 고통에 집착하는 습관이다.'],
+[2,'몸과 마음','『순자』는 인간의 욕구를 어떻게 다루라고 보았는가?',['예와 교육으로 조절한다','그대로 방치한다','모두 없앤다','타고난 선함에 맡긴다'],'순자는 욕구를 방치하면 혼란이 생기므로 예(禮)와 교육 같은 후천적 노력이 필요하다고 보았다.'],
+[2,'몸과 마음','『맹자』에서 생(生)과 의(義)를 함께 이룰 수 없다면?',['의를 택한다','생을 택한다','둘 다 포기한다','더 쉬운 쪽을 택한다'],'맹자는 살아 있는 것보다 도덕적 가치와 인간다운 삶을 더 중요하게 보았다.'],
+[2,'공부와 삶','이이가 학습 실패의 원인으로 든 것이 아닌 것은?',['남보다 재능이 부족함','뜻을 제대로 세우지 못함','앎이 분명하지 않음','행동이 독실하지 않음'],'뜻·앎·행동이 문제이며 재능 부족은 언급되지 않는다.'],
+[3,'구용·구사','화가 치밀어 친구에게 소리치려는 순간 “화를 내면 어려움을 겪게 된다”고 떠올렸다. 이에 해당하는 구사는?',['분사난','시사명','언사충','색사온'],'분사난은 화가 날 때 어려움을 겪게 될 것을 생각하는 것이다.'],
+[3,'구용·구사','모르는 문제를 혼자 붙들지 않고 선생님께 질문했다. 해당하는 구사는?',['의사문','청사총','사사경','모사공'],'의사문은 의심스러움이 있으면 묻기를 생각하는 것이다.'],
+[3,'구용·구사','친구의 말을 딴청 피우지 않고 귀 기울여 들었다. 해당하는 것은?',['청사총','성용정','구용지','색사온'],'청사총은 들을 때 분명히 들을 것을 생각하는 것이다.'],
+[3,'공부와 삶','집에서 혼자 있을 때도 학교에서처럼 몸가짐을 바르게 하려 한다. 『격몽요결』과 관련된 태도는?',['겉과 속을 한결같게 한다','남의 눈을 의식해 꾸민다','편안함을 우선한다','뜻을 미룬다'],'『격몽요결』은 혼자 있어도 여럿과 함께 있는 것처럼 행동하라고 한다.'],
+[3,'공부와 삶','“나는 윤리 선생님이 되겠다”며 삶의 방향을 굳게 정했다. 이이가 강조한 것은?',['입지(立志)','혁구습(革舊習)','지신(持身)','격몽(擊蒙)'],'입지는 도덕적인 삶을 향해 뜻을 세우는 것이다.'],
+[3,'공부와 삶','다음 중 이이가 버려야 할 낡은 습관으로 든 것은?',['허례허식을 좋아함','일찍 일어남','책을 읽음','예를 지킴'],'몸과 마음이 편하기만을 생각함, 남과 다툼, 허례허식이 낡은 습관이다.'],
+[3,'쾌락과 고통','게임에 빠져 즐겁다가 결국 수면 부족으로 괴롭다. 『도파민네이션』의 비유로 알맞은 것은?',['쾌락 쪽으로 기운 저울이 반작용으로 고통 쪽으로 기운다','저울이 계속 쾌락에 머문다','저울에는 도파민이 없다','고통은 쾌락과 무관하다'],'쾌락으로 기운 만큼 저울이 반대쪽, 곧 고통으로 기울어진다.'],
+[3,'쾌락과 고통','유행하는 새 옷이 갖고 싶다. 에피쿠로스의 관점에서 알맞은 태도는?',['필요한지 숙고하고 자족한다','무조건 산다','남과 비교한다','참지 말고 채운다'],'자연스럽고 필수적인 욕구만 채우고 나머지는 숙고해 절제하며 자족한다.'],
+[3,'쾌락과 고통','가까운 이의 죽음에 지나치게 슬퍼하는 사람에게 「화살의 경」이 주는 교훈은?',['죽음을 삶의 자연스러운 과정으로 받아들이라','슬픔을 더 키우라','죽음을 잊으라','원인을 남 탓으로 돌리라'],'죽음을 받아들이지 못하고 슬퍼하면 두 번째 화살이 되어 더 큰 고통에 빠진다.'],
+[3,'몸과 마음','피곤한데 임신부를 보고 웃으며 자리를 양보했다. 몸과 마음의 관계에서 무엇을 보여 주는가?',['마음이 몸의 즉각적 욕구를 넘어선다','몸이 마음을 지배한다','마음은 몸과 무관하다','피곤은 착각이다'],'인간은 마음을 통해 몸의 한계와 욕구를 넘어 행동할 수 있다.'],
+[3,'몸과 마음','같은 길이의 선이 달라 보이는 착시에서 얻을 수 있는 교훈은?',['이성이 몸의 지각 오류를 바로잡는다','눈은 믿을 수 없다','마음은 필요 없다','몸의 지각은 항상 옳다'],'몸과 마음은 서로의 한계를 보완한다.'],
+[3,'몸과 마음','『창백한 푸른 점』이 강조하는 태도는?',['우주적 겸손과 서로에 대한 관용','인류의 우월성','국가 간 경쟁','개인의 성공'],'광활한 우주 속 지구를 보며 자만심을 내려놓고 서로와 지구를 소중히 여겨야 한다.'],
+[3,'쾌락과 고통','프랭클이 고통 속에서도 삶의 의미를 찾아야 한다고 본 까닭은?',['부정적 요소를 건설적인 것으로 바꿀 능력이 있기 때문','고통은 곧 쾌락이므로','의미는 찾을 수 없으므로','고통은 피할 수 있으므로'],'삶의 의미를 세운 사람은 시련을 극복할 힘과 가능성을 가진다.']
+];
+const CFG={1:{n:10,t:0,g:6,nm:'기본',pt:100,rk:'학동'},2:{n:15,t:20,g:7,nm:'심화',pt:150,rk:'선비'},3:{n:20,t:15,g:8,nm:'응용',pt:200,rk:'군자'}};
+function gen(k){
+  const all=[...GU.map(x=>[...x,'구용']),...GS.map(x=>[...x,'구사'])];
+  return sh(all).slice(0,k).map(it=>{
+    const w=sh(all.filter(x=>x[3]===it[3]&&x!==it)).slice(0,3);
+    return Math.random()<.5
+      ?{cat:it[3],h:it[1],q:`‘${it[0]}(${it[1]})’의 의미는?`,a:[it[2],...w.map(x=>x[2])],e:`${it[0]}: ${it[2]}.`}
+      :{cat:it[3],h:it[1],q:`“${it[2]}.” 이 뜻에 해당하는 ${it[3]}은?`,a:[it[0],...w.map(x=>x[0])],e:`${it[0]}(${it[1]}): ${it[2]}.`};
+  });
+}
+let L=0,P=[],i=0,sc=0,st=0,bs=0,ok=0,tl=0,tid=null,done=false,hist=[],half=true,map=[];
+const scr=id=>{document.querySelectorAll('.scr').forEach(e=>e.classList.toggle('on',e.id===id))};
+function begin(l){
+  L=l;const c=CFG[l];
+  const hp=sh(H.filter(x=>x[0]===l)).slice(0,c.n-c.g).map(x=>({cat:x[1],h:GLY[x[1]],q:x[2],a:x[3],e:x[4]}));
+  P=sh([...gen(c.g),...hp]);i=sc=st=bs=ok=0;hist=[];half=true;scr('game');show();
+}
+function show(){
+  clearInterval(tid);done=false;const q=P[i],c=CFG[L];
+  $('#lvn').textContent=`LEVEL ${L} ${c.nm}`;$('#cnt').textContent=`${i+1} / ${P.length}`;$('#sc').textContent=`점수 ${sc}`;$('#st').textContent=`🔥 ${st}연속`;
+  $('#cat').textContent=q.cat;$('#q').textContent=q.q;$('#wm').textContent=q.h;$('#pb').style.width=(i/P.length*100)+'%';
+  $('#fb').innerHTML='';$('#next').disabled=true;$('#next').textContent=i===P.length-1?'결과 보기 ▶':'다음 문제 ▶';$('#half').disabled=!half;
+  map=sh(q.a.map((t,k)=>({t,k})));
+  $('#ans').innerHTML=map.map((o,n)=>`<button class="a" type="button" data-n="${n}"><em>${n+1}</em><span></span></button>`).join('');
+  document.querySelectorAll('.a span').forEach((s,n)=>s.textContent=map[n].t);
+  const T=$('#tm');T.classList.remove('d');
+  if(c.t){tl=c.t;T.textContent=tl+'s';tid=setInterval(()=>{tl--;T.textContent=tl+'s';T.classList.toggle('d',tl<=5);if(tl<=0){clearInterval(tid);pick(-1)}},1000)}else T.textContent='∞';
+}
+function pick(n){
+  if(done)return;done=true;clearInterval(tid);$('#tm').classList.remove('d');
+  const q=P[i],c=CFG[L],btns=[...document.querySelectorAll('.a')],good=n>=0&&map[n].k===0;
+  btns.forEach((b,k)=>{b.disabled=true;if(map[k].k===0){b.classList.add('ok');b.querySelector('em').textContent='✓'}});
+  if(good){ok++;st++;bs=Math.max(bs,st);const p=c.pt+(c.t?tl*5:0)+Math.min(st,5)*10;sc+=p;}
+  else{st=0;if(n>=0){btns[n].classList.add('no');btns[n].querySelector('em').textContent='✗'}}
+  hist.push({q:q.q,good,mine:n>=0?map[n].t:'시간 초과',ans:q.a[0]});
+  $('#sc').textContent=`점수 ${sc}`;$('#st').textContent=`🔥 ${st}연속`;$('#pb').style.width=((i+1)/P.length*100)+'%';
+  $('#fb').innerHTML=(good?'<b class="g">정답!</b> ':n<0?'<b class="r">시간 초과!</b> ':'<b class="r">오답!</b> ')+q.e;
+  $('#next').disabled=false;$('#next').focus();
+}
+function next(){if(!done)return;if(i<P.length-1){i++;show()}else finish()}
+function finish(){
+  clearInterval(tid);const c=CFG[L],r=ok/P.length;scr('result');
+  $('#rl').textContent=`LEVEL ${L} ${c.nm}`;
+  $('#rt').textContent=r>=.8?`${c.rk} 승급! 레벨 클리어`:'레벨 도전 결과';
+  $('#rs').textContent=sc+'점';$('#rc').textContent=`${ok} / ${P.length}`;$('#ra').textContent=Math.round(r*100)+'%';$('#rb').textContent=bs+'연속';
+  $('#rm').textContent=r===1?'완벽합니다! 전 문제 정답.':r>=.8?'핵심을 잘 잡았어요. 다음 레벨에 도전해 보세요.':r>=.6?'조금만 더 복습하면 승급할 수 있어요.':'오답을 확인하고 다시 도전해 보세요.';
+  $('#nl').style.display=(L<3&&r>=.8)?'':'none';
+  const w=hist.filter(x=>!x.good);
+  $('#rv').innerHTML=w.length?'<b>오답 복습</b>'+w.map(x=>`<div><b></b><br><span style="color:var(--red)"></span><br><span style="color:var(--jade)"></span></div>`).join(''):'<b style="color:var(--jade)">오답이 없습니다!</b>';
+  document.querySelectorAll('#rv div').forEach((d,k)=>{const s=d.querySelectorAll('b,span');s[0].textContent=w[k].q;s[1].textContent='내 답: '+w[k].mine;s[2].textContent='정답: '+w[k].ans});
+}
+function fs(){try{const d=document,e=d.documentElement;if(d.fullscreenElement)d.exitFullscreen();else if(e.requestFullscreen)e.requestFullscreen().catch(()=>{});}catch(_){}}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.classList.contains('lvb'))begin(+t.dataset.l);
+  else if(t.classList.contains('a'))pick(+t.dataset.n);
+  else if(t.id==='next')next();
+  else if(t.id==='half'&&!done&&half){half=false;t.disabled=true;let r=0;document.querySelectorAll('.a').forEach((b,k)=>{if(map[k].k!==0&&r<2){b.classList.add('gone');b.disabled=true;r++}})}
+  else if(t.id==='quit'){clearInterval(tid);scr('start')}
+  else if(t.id==='again')begin(L);
+  else if(t.id==='nl')begin(L+1);
+  else if(t.id==='home')scr('start');
+  else if(t.id==='fs')fs();
+});
+document.addEventListener('keydown',e=>{
+  if(!$('#game').classList.contains('on'))return;
+  if(e.key>='1'&&e.key<='4'){const b=document.querySelectorAll('.a')[+e.key-1];if(b&&!b.disabled)pick(+e.key-1)}
+  else if((e.key==='Enter'||e.key===' ')&&done){e.preventDefault();next()}
+  else if(e.key==='f'||e.key==='F')fs();
+});
+</script>
+</body>
+</html>
